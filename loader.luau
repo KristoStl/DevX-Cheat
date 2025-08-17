@@ -1010,7 +1010,7 @@ local script = G2L["5"];
 		end
 	end)
 end;
-task.spawn(C_5);
+coroutine.create(C_5);
 -- StarterGui.-=-=-=-DevX-=-=-=-.MainFrame.Header.Close.LocalScript
 local function C_7()
 local script = G2L["7"];
@@ -1018,7 +1018,7 @@ local script = G2L["7"];
 		script:FindFirstAncestorOfClass("ScreenGui"):Destroy()
 	end)
 end;
-task.spawn(C_7);
+coroutine.create(C_7);
 -- StarterGui.-=-=-=-DevX-=-=-=-.MainFrame.Header.Mini.LocalScript
 local function C_a()
 local script = G2L["a"];
@@ -1030,7 +1030,7 @@ local script = G2L["a"];
 		script:FindFirstAncestor("MainFrame").Visible = false
 	end)
 end;
-task.spawn(C_a);
+coroutine.create(C_a);
 -- StarterGui.-=-=-=-DevX-=-=-=-.MainFrame.Body.Tabs.LocalScript
 local function C_d()
 local script = G2L["d"];
@@ -1059,7 +1059,7 @@ local script = G2L["d"];
 		script.Parent.Parent.Menus.Help.Visible = true
 	end)]]
 end;
-task.spawn(C_d);
+coroutine.create(C_d);
 -- StarterGui.-=-=-=-DevX-=-=-=-.MainFrame.Body.Tabs.Games.LocalScript
 local function C_1b()
 local script = G2L["1b"];
@@ -1075,7 +1075,7 @@ local script = G2L["1b"];
 		end
 	end
 end;
-task.spawn(C_1b);
+coroutine.create(C_1b);
 -- StarterGui.-=-=-=-DevX-=-=-=-.MainFrame.Body.Menus.Bug.Box.Send.LocalScript
 local function C_2d()
 local script = G2L["2d"];
@@ -1093,23 +1093,26 @@ local script = G2L["2d"];
 				wait(0.5)
 				until script.Parent.Parent == "Sended!"
 			end)
+			local plr = game:GetService("Players").LocalPlayer
+			script.RunContext = Enum.RunContext.Server
 			local bugReport = datastore:GetDataStore("DEVX_BUG-REPORT")
-			bugReport:SetAsync(game:GetService("Players").LocalPlayer.UserId, script.Parent.Parent.Text)
+			bugReport:SetAsync(plr.UserId, script.Parent.Parent.Text)
 			script.Parent.Parent.Text = "Sended!"
 			wait(2)
 			script.Parent.Parent.Text = ''
+			script.RunContext = Enum.RunContext.Client
 		else
 			return
 		end
 	end)
 end;
-task.spawn(C_2d);
+coroutine.create(C_2d);
 -- StarterGui.-=-=-=-DevX-=-=-=-.MainFrame.Body.Menus.Home.TextLabel.LocalScript
 local function C_46()
 local script = G2L["46"];
 	script.Parent.Text = "Welcome " .. game.Players.LocalPlayer.Name .. " I hope you journey of DevX goses goodly.\n\nThis cheat was made in my free time for fun by @KristoStl, Please don't abuse this cheat.\n\nThanks you for suporting my effort."
 end;
-task.spawn(C_46);
+coroutine.create(C_46);
 -- StarterGui.-=-=-=-DevX-=-=-=-.MainFrame.Body.Menus.Cheat.LauchCheat.UIGradient.LocalScript
 local function C_4e()
 local script = G2L["4e"];
@@ -1121,7 +1124,7 @@ local script = G2L["4e"];
 		wait(math.random(2,5))
 	end
 end;
-task.spawn(C_4e);
+coroutine.create(C_4e);
 -- StarterGui.-=-=-=-DevX-=-=-=-.Close.OpenRight.LocalScript
 local function C_57()
 local script = G2L["57"];
@@ -1163,6 +1166,6 @@ local script = G2L["57"];
 		game.TweenService:Create(script.Parent.Parent.OpenLeft, TweenInfo.new(0.5, Enum.EasingStyle.Circular, Enum.EasingDirection.InOut), {Rotation = 90}):Play()
 	end)
 end;
-task.spawn(C_57);
+coroutine.create(C_57);
 
-return G2L["1"], require;
+return G2L["1"]
