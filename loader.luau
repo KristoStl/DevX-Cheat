@@ -4,9 +4,7 @@ local CollectionService = game:GetService("CollectionService");
 local G2L = {};
 
 -- StarterGui.-=-=-=-DevX-=-=-=-
-G2L["1"] = Instance.new("ScreenGui");
-syn.protect_gui(G2L["1"]);
-G2L["1"]["Enabled"] = true;
+G2L["1"] = Instance.new("ScreenGui", game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"));
 G2L["1"]["Name"] = [[-=-=-=-DevX-=-=-=-]];
 G2L["1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling;
 
@@ -329,6 +327,7 @@ CollectionService:AddTag(G2L["1d"], [[DevX-Themable]]);
 -- StarterGui.-=-=-=-DevX-=-=-=-.MainFrame.Body.Tabs.Games.Universal.CheatText
 G2L["1e"] = Instance.new("StringValue", G2L["1c"]);
 G2L["1e"]["Name"] = [[CheatText]];
+G2L["1e"]["Value"] = [[This script universal it work on many game and include ESP, speed boost, jump boost, fly, noclip, infinity Health, Anti AFK ... ect]];
 
 
 -- StarterGui.-=-=-=-DevX-=-=-=-.MainFrame.Body.Tabs.Games.Universal.CheatLink
@@ -729,7 +728,6 @@ G2L["42"]["Position"] = UDim2.new(1, -20, 1, 0);
 
 -- StarterGui.-=-=-=-DevX-=-=-=-.MainFrame.Body.Menus.Home
 G2L["43"] = Instance.new("Frame", G2L["26"]);
-G2L["43"]["Visible"] = false;
 G2L["43"]["BorderSizePixel"] = 0;
 G2L["43"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
 G2L["43"]["Size"] = UDim2.new(1, 0, 1, 0);
@@ -775,6 +773,7 @@ G2L["46"] = Instance.new("LocalScript", G2L["45"]);
 
 -- StarterGui.-=-=-=-DevX-=-=-=-.MainFrame.Body.Menus.Cheat
 G2L["47"] = Instance.new("Frame", G2L["26"]);
+G2L["47"]["Visible"] = false;
 G2L["47"]["BorderSizePixel"] = 0;
 G2L["47"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
 G2L["47"]["Size"] = UDim2.new(1, 0, 1, 0);
@@ -1069,7 +1068,7 @@ local script = G2L["1b"];
 			i.Activated:Connect(function()
 				script.Parent.Parent.Parent.Menus.Cheat.CheatTexts.Text = tostring(i.CheatText.Value)
 				script.Parent.Parent.Parent.Menus.Cheat.LauchCheat.Activated:Connect(function()
-					loadstring(game:HttpGet(i.CheatLink.Value))
+					loadstring(game:HttpGet(i.CheatLink.Value))()
 					script:FindFirstAncestorOfClass("ScreenGui"):Destroy()
 				end)
 			end)
