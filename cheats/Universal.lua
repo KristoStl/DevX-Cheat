@@ -133,7 +133,7 @@ espGroupbox:AddLabel('Player ESP Color'):AddColorPicker('PlayerESP_Color', {
 })
 espGroupbox:AddDivider()
 
-espGroupbox:AddToggle('NPCESP', {
+--[[espGroupbox:AddToggle('NPCESP', {
 	Text = 'Toggle NPC ESP',
 	Default = false,
 	Callback = function(Value)
@@ -174,7 +174,7 @@ espGroupbox:AddLabel('Item ESP Color'):AddColorPicker('ItemESP_Color', {
 			i.OutlineColor = Value
 		end
 	end
-})
+})]]
 espGroupbox:AddDivider()
 
 espGroupbox:AddButton({
@@ -182,8 +182,8 @@ espGroupbox:AddButton({
 	DoubleClick = true,
 	Func = function()
 		LoadAllPlayers()
-		LoadNPCESP()
-		LoadItemESP()
+		--LoadNPCESP()
+		--LoadItemESP()
 	end
 })
 ----------------------------------------------------------------
@@ -217,6 +217,16 @@ SpeedSlider:SetupDependencies({
 	{ Toggles.CSpeed, true } -- We can also pass `false` if we only want our features to show when the toggle is off!
 });
 
+Toggles.CSpeed:OnChanged(function()
+	local Character = game:GetService(`Players`).LocalPlayer.Character or game:GetService(`Players`).LocalPlayer.CharacterAdded:Wait()
+	local Humanoid = Character:WaitForChild('Humanoid')
+	if Toggles.CSpeed.Value then
+		Humanoid.WalkSpeed = Options.SpeedSlider.Value
+	else
+		Humanoid.WalkSpeed = 16
+	end
+end)
+
 PlayerGroupBox:AddToggle('CJump', {
 	Text = 'Custom JumpPower',
 	Default = false
@@ -247,14 +257,96 @@ JumpSlider:SetupDependencies({
 	{ Toggles.CJump, true } -- We can also pass `false` if we only want our features to show when the toggle is off!
 });
 
+Toggles.CJump:OnChanged(function()
+	local Character = game:GetService(`Players`).LocalPlayer.Character or game:GetService(`Players`).LocalPlayer.CharacterAdded:Wait()
+	local Humanoid = Character:WaitForChild('Humanoid')
+	if Toggles.CJump.Value then
+		Humanoid.JumpPower = Options.JumpSlider.Value
+	else
+		Humanoid.JumpPower = 50
+	end
+end)
+
 PlayerGroupBox:AddToggle('Fly', {
 	Text = 'Fly',
 	Default = false,
 	Risky = true
 })
+local function Fly(Value)
+	local Players = game:GetService("Players")
+	local UserInputService = game:GetService("UserInputService")
 
+	-- // Vars
+	local LocalPlayer = Players.LocalPlayer
+	local CurrentlyFlying = false
+	local MaxForce = Vector3.new(123123, 123123, 123123)
+	local UpFly = Vector3.new(0, 25, 0)
+	local Speed = Value
+
+	local Keys = {
+		[Enum.KeyCode.W] = {"LookVector", false},
+		[Enum.KeyCode.S] = {"LookVector", true},
+		[Enum.KeyCode.A] = {"RightVector", true},
+		[Enum.KeyCode.D] = {"RightVector", false}
+	}
+
+	-- //
+	local BodyVelocity = Instance.new("BodyVelocity")
+	syn.protect_gui(BodyVelocity)
+
+	-- //
+	local function startFly(Velocity)
+		CurrentlyFlying = true
+		while (CurrentlyFlying) do
+			BodyVelocity.Parent = LocalPlayer.Character.HumanoidRootPart
+			BodyVelocity.MaxForce = MaxForce
+			BodyVelocity.Velocity = Velocity
+
+			wait(0.2)
+		end
+	end
+
+	-- //
+	local function stopFly()
+		CurrentlyFlying = false
+		BodyVelocity.Parent = nil
+		BodyVelocity.MaxForce = Vector3.new()
+		BodyVelocity.Velocity = Vector3.new()
+	end
+
+	-- //
+	UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
+		if (gameProcessedEvent) then
+			return
+		end
+		if Toggles.Fly.Value then
+			local KeyCode = input.KeyCode
+			local MoveData = Keys[KeyCode]
+
+			-- // Check if it is a recognised key
+			if (MoveData) then
+				-- // Vars
+				local Multiplier = MoveData[2] and -1 or 1
+				local Velocity = LocalPlayer.Character.HumanoidRootPart.CFrame[MoveData[1]] * Speed
+
+				-- // Fly
+				startFly(Velocity * Multiplier)
+				return
+			end
+
+			-- // Check if it is a recognised key
+			if (KeyCode == Enum.KeyCode.Space) then
+				-- // Fly
+				startFly(UpFly)
+				return
+			end
+		else
+			stopFly()
+		end
+	end)
+end
 local FlySlider = PlayerGroupBox:AddDependencyBox();
-JumpSlider:AddSlider('FlySlider', {
+FlySlider:AddSlider('FlySlider', {
 	Text = 'Fly Speed',
 	Default = 50,
 	Min = 16,
@@ -263,93 +355,29 @@ JumpSlider:AddSlider('FlySlider', {
 	Compact = false,
 	Disabled = false,
 	Callback = function(Value)
-			local Players = game:GetService("Players")
-			local UserInputService = game:GetService("UserInputService")
-
-			-- // Vars
-			local LocalPlayer = Players.LocalPlayer
-			local CurrentlyFlying = false
-			local MaxForce = Vector3.new(123123, 123123, 123123)
-			local UpFly = Vector3.new(0, 25, 0)
-			local Speed = Value
-
-			local Keys = {
-				[Enum.KeyCode.W] = {"LookVector", false},
-				[Enum.KeyCode.S] = {"LookVector", true},
-				[Enum.KeyCode.A] = {"RightVector", true},
-				[Enum.KeyCode.D] = {"RightVector", false}
-			}
-
-			-- //
-			local BodyVelocity = Instance.new("BodyVelocity")
-			syn.protect_gui(BodyVelocity)
-
-			-- //
-			local function startFly(Velocity)
-				CurrentlyFlying = true
-				while (CurrentlyFlying) do
-					BodyVelocity.Parent = LocalPlayer.Character.HumanoidRootPart
-					BodyVelocity.MaxForce = MaxForce
-					BodyVelocity.Velocity = Velocity
-
-					wait(0.2)
-				end
-			end
-
-			-- //
-			local function stopFly()
-				CurrentlyFlying = false
-				BodyVelocity.Parent = nil
-				BodyVelocity.MaxForce = Vector3.new()
-				BodyVelocity.Velocity = Vector3.new()
-			end
-
-			-- //
-			UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
-				if (gameProcessedEvent) then
-					return
-				end
-				if Toggles.Fly.Value then
-					local KeyCode = input.KeyCode
-					local MoveData = Keys[KeyCode]
-
-					-- // Check if it is a recognised key
-					if (MoveData) then
-						-- // Vars
-						local Multiplier = MoveData[2] and -1 or 1
-						local Velocity = LocalPlayer.Character.HumanoidRootPart.CFrame[MoveData[1]] * Speed
-
-						-- // Fly
-						startFly(Velocity * Multiplier)
-						return
-					end
-
-					-- // Check if it is a recognised key
-					if (KeyCode == Enum.KeyCode.Space) then
-						-- // Fly
-						startFly(UpFly)
-						return
-					end
-				else
-					stopFly()
-				end
-			end)
+			Fly(Value)
 	end
 })
 JumpSlider:SetupDependencies({
 	{ Toggles.Fly, true } -- We can also pass `false` if we only want our features to show when the toggle is off!
 });
+Toggles.Fly:OnChanged(function() Fly(Options.FlySlider.Value)end)
+
 PlayerGroupBox:AddDivider()
 PlayerGroupBox:AddToggle('Noclip', {
 	Text = 'Noclip',
+	Tooltip = "A little bit buggy...",
 	Default = false,
 	Callback = function(Value)
 		local Character = game:GetService(`Players`).LocalPlayer.Character or game:GetService(`Players`).LocalPlayer.CharacterAdded:Wait()
+		repeat
 		for _,i in Character:GetChildren() do
 			if i:IsA('BasePart') then
 				i.CanCollide = not Value
 			end
 		end
+		wait(10)
+		until not Value
 	end
 })
 
@@ -445,4 +473,4 @@ ThemeManager:ApplyToTab(Tabs['UI Settings'])
 -- You can use the SaveManager:LoadAutoloadConfig() to load a config
 -- which has been marked to be one that auto loads!
 SaveManager:LoadAutoloadConfig()
-return
+return script
