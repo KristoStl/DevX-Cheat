@@ -1066,6 +1066,10 @@ local script = G2L["1b"];
 	for _,i in script.Parent:GetChildren() do
 		if i:IsA("GuiButton") then
 			i.Activated:Connect(function()
+				for _,i in script.Parent.Parent.Parent.Menus:GetChildren() do
+					i.Visible = false
+				end
+				script.Parent.Parent.Parent.Menus.Cheat.Visible = true
 				script.Parent.Parent.Parent.Menus.Cheat.CheatTexts.Text = tostring(i.CheatText.Value)
 				script.Parent.Parent.Parent.Menus.Cheat.LauchCheat.Activated:Connect(function()
 					loadstring(game:HttpGet(i.CheatLink.Value))()
@@ -1091,8 +1095,9 @@ local script = G2L["2d"];
 				wait(0.5)
 				script.Parent.Text = "..."
 				wait(0.5)
-				until script.Parent.Parent == "Sended!"
+				until script.Parent.Parent.Text == "Sended!" or  script.Parent.Parent.Text == "Error Sending!"
 			end)
+			local sucess = pcall(function()
 			local plr = game:GetService("Players").LocalPlayer
 			script.RunContext = Enum.RunContext.Server
 			local bugReport = datastore:GetDataStore("DEVX_BUG-REPORT")
@@ -1101,6 +1106,10 @@ local script = G2L["2d"];
 			wait(2)
 			script.Parent.Parent.Text = ''
 			script.RunContext = Enum.RunContext.Client
+			end)
+			if not sucess than
+				script.Parent.Parent.Text = "Error Sending!"
+			end
 		else
 			return
 		end
