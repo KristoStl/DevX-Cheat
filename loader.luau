@@ -1107,7 +1107,7 @@ local script = G2L["2d"];
 			script.Parent.Parent.Text = ''
 			script.RunContext = Enum.RunContext.Client
 			end)
-			if not sucess than
+			if not sucess then
 				script.Parent.Parent.Text = "Error Sending!"
 			end
 		else
