@@ -81,18 +81,26 @@ game.Players.PlayerAdded:Connect(LoadPlayerESP)
 
 
 -- Load Library
-local repo = 'https://raw.githubusercontent.com/violin-suzutsuki/LinoriaLib/main/'
+local repo = 'https://raw.githubusercontent.com/mstudio45/LinoriaLib/main/'
 
 local Library = loadstring(game:HttpGet(repo .. 'Library.lua'))()
-local ThemeManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/KristoStl/DevX-Cheat/refs/heads/master/addons/ThemeManager.lua"))()
+local ThemeManager = loadstring(game:HttpGet('https://raw.githubusercontent.com/KristoStl/DevX-Cheat/refs/heads/master/addons/ThemeManager.lua'))()
 local SaveManager = loadstring(game:HttpGet(repo .. 'addons/SaveManager.lua'))()
+local Options = Library.Options
+local Toggles = Library.Toggles
+
+Library.ShowToggleFrameInKeybinds = false -- Make toggle keybinds work inside the keybinds UI (aka adds a toggle to the UI). Good for mobile users (Default value = true)
+Library.ShowCustomCursor = false -- Toggles the Linoria cursor globaly (Default value = true)
+Library.NotifySide = "Left"
 
 local Window = Library:CreateWindow({
 	Title = 'DevX - Universal Cheat',
 	Center = true,
 	AutoShow = true,
 	TabPadding = 8,
-	MenuFadeTime = 0.2
+	MenuFadeTime = 0.2,
+	Resizable = true,
+	ShowCustomCursor = true,
 })
 
 local Tabs = {
@@ -241,7 +249,8 @@ JumpSlider:SetupDependencies({
 
 PlayerGroupBox:AddToggle('Fly', {
 	Text = 'Fly',
-	Default = false
+	Default = false,
+	Risky = true
 })
 
 local FlySlider = PlayerGroupBox:AddDependencyBox();
@@ -391,14 +400,15 @@ but:AddButton({
 
 
 ------------------------------------------------------------------------------------------
-Library.KeybindFrame.Visible = false; -- todo: add a function for this
 
 -- UI Settings
 local MenuGroup = Tabs['UI Settings']:AddLeftGroupbox('Menu')
 
--- I set NoUI so it does not show up in the keybinds menu
-MenuGroup:AddButton('Unload', function() Library:Unload() end)
-MenuGroup:AddLabel('Menu bind'):AddKeyPicker('MenuKeybind', { Default = 'RightShift', NoUI = false, Text = 'Menu keybind' })
+MenuGroup:AddToggle("KeybindMenuOpen", { Default = Library.KeybindFrame.Visible, Text = "Open Keybind Menu", Callback = function(value) Library.KeybindFrame.Visible = value end})
+MenuGroup:AddToggle("ShowCustomCursor", {Text = "Custom Cursor", Default = false, Callback = function(Value) Library.ShowCustomCursor = Value end})
+MenuGroup:AddDivider()
+MenuGroup:AddLabel("Menu bind"):AddKeyPicker("MenuKeybind", { Default = "RightShift", NoUI = false, Text = "Menu keybind" })
+MenuGroup:AddButton("Unload", function() Library:Unload() end)
 
 Library.ToggleKeybind = Options.MenuKeybind -- Allows you to have a custom keybind for the menu
 
@@ -422,7 +432,7 @@ SaveManager:SetIgnoreIndexes({ 'MenuKeybind' })
 -- a script hub could have themes in a global folder
 -- and game configs in a separate folder per game
 ThemeManager:SetFolder('DevX')
-SaveManager:SetFolder('DevX/UniversalScript')
+SaveManager:SetFolder('DevX/specific-game')
 
 -- Builds our config menu on the right side of our tab
 SaveManager:BuildConfigSection(Tabs['UI Settings'])
@@ -434,4 +444,3 @@ ThemeManager:ApplyToTab(Tabs['UI Settings'])
 -- You can use the SaveManager:LoadAutoloadConfig() to load a config
 -- which has been marked to be one that auto loads!
 SaveManager:LoadAutoloadConfig()
-Library:Toggled()
