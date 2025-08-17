@@ -6,7 +6,7 @@ local G2L = {};
 -- StarterGui.-=-=-=-DevX-=-=-=-
 G2L["1"] = Instance.new("ScreenGui");
 syn.protect_gui(G2L["1"]);
-G2L["1"]["Enabled"] = false;
+G2L["1"]["Enabled"] = true;
 G2L["1"]["Name"] = [[-=-=-=-DevX-=-=-=-]];
 G2L["1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling;
 
