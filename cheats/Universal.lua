@@ -133,7 +133,7 @@ espGroupbox:AddLabel('Player ESP Color'):AddColorPicker('PlayerESP_Color', {
 })
 espGroupbox:AddDivider()
 
---[[espGroupbox:AddToggle('NPCESP', {
+espGroupbox:AddToggle('NPCESP', {
 	Text = 'Toggle NPC ESP',
 	Default = false,
 	Callback = function(Value)
@@ -144,7 +144,7 @@ espGroupbox:AddDivider()
 })
 
 espGroupbox:AddLabel('NPC ESP Color'):AddColorPicker('NPCESP_Color', {
-	Default = Color3.fromRGB(255, 0, 0),
+	Default = Color3.new(1, 0, 0.5),
 	Title = 'NPC ESP Color',
 	Callback = function(Value)
 		for _,i in ipairs(npcESPList) do
@@ -153,7 +153,7 @@ espGroupbox:AddLabel('NPC ESP Color'):AddColorPicker('NPCESP_Color', {
 		end
 	end
 })
-espGroupbox:AddDivider()
+--[[espGroupbox:AddDivider()
 
 espGroupbox:AddToggle('ItemESP', {
 	Text = 'Toggle Item ESP',
@@ -166,7 +166,7 @@ espGroupbox:AddToggle('ItemESP', {
 })
 
 espGroupbox:AddLabel('Item ESP Color'):AddColorPicker('ItemESP_Color', {
-	Default = Color3.fromRGB(0, 255, 0),
+	Default = Color3.new(0, 0.7, 0),
 	Title = 'Item ESP Color',
 	Callback = function(Value)
 		for _,i in ipairs(itemESPList) do
@@ -182,7 +182,7 @@ espGroupbox:AddButton({
 	DoubleClick = true,
 	Func = function()
 		LoadAllPlayers()
-		--LoadNPCESP()
+		LoadNPCESP()
 		--LoadItemESP()
 	end
 })
@@ -292,7 +292,7 @@ local function Fly(Value)
 
 	-- //
 	local BodyVelocity = Instance.new("BodyVelocity")
-	syn.protect_gui(BodyVelocity)
+	--syn.protect_gui(BodyVelocity)
 
 	-- //
 	local function startFly(Velocity)
@@ -358,7 +358,7 @@ FlySlider:AddSlider('FlySlider', {
 			Fly(Value)
 	end
 })
-JumpSlider:SetupDependencies({
+FlySlider:SetupDependencies({
 	{ Toggles.Fly, true } -- We can also pass `false` if we only want our features to show when the toggle is off!
 });
 Toggles.Fly:OnChanged(function() Fly(Options.FlySlider.Value)end)
