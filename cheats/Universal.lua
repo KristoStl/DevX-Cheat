@@ -74,8 +74,6 @@ end
 
 -- Initial Load
 LoadAllPlayers()
-LoadItemESP()
-LoadNPCESP()
 game.Players.PlayerAdded:Connect(LoadPlayerESP)
 
 
@@ -100,7 +98,7 @@ local Window = Library:CreateWindow({
 	TabPadding = 8,
 	MenuFadeTime = 0.2,
 	Resizable = true,
-	ShowCustomCursor = true,
+	ShowCustomCursor = false,
 })
 
 local Tabs = {
@@ -201,6 +199,7 @@ SpeedSlider:AddSlider('SpeedSlider', {
 	Min = 16,
 	Max = 200,
 	Rounding = 1,
+	Disabled = false,
 	Compact = false,
 	Callback = function(Value)
 		if Toggles.CSpeed.Value then
@@ -230,6 +229,7 @@ JumpSlider:AddSlider('JumpSlider', {
 	Min = 50,
 	Max = 200,
 	Rounding = 1,
+	Disabled = false,
 	Compact = false,
 	Callback = function(Value)
 		if Toggles.CJump.Value then
@@ -261,6 +261,7 @@ JumpSlider:AddSlider('FlySlider', {
 	Max = 200,
 	Rounding = 1,
 	Compact = false,
+	Disabled = false,
 	Callback = function(Value)
 			local Players = game:GetService("Players")
 			local UserInputService = game:GetService("UserInputService")
@@ -336,7 +337,7 @@ JumpSlider:AddSlider('FlySlider', {
 	end
 })
 JumpSlider:SetupDependencies({
-	{ Toggles.CJump, true } -- We can also pass `false` if we only want our features to show when the toggle is off!
+	{ Toggles.Fly, true } -- We can also pass `false` if we only want our features to show when the toggle is off!
 });
 PlayerGroupBox:AddDivider()
 PlayerGroupBox:AddToggle('Noclip', {
@@ -374,7 +375,7 @@ PlayerGroupBox:AddToggle('AntiAFK', {
 })
 ------------------------------------------------------------------------------------------
 local CreditLeft = Tabs.Credits:AddLeftGroupbox('Credits')
-local CreditRight = Tabs.Credits:AddLeftGroupbox('Information')
+local CreditRight = Tabs.Credits:AddRightGroupbox('Information')
 
 CreditLeft:AddLabel('@KristoStl | Developer')
 CreditLeft:AddLabel('@Dylou_jumper | Tester')
@@ -382,7 +383,7 @@ CreditLeft:AddLabel('LinoraLib | Ui Library Used')
 CreditLeft:AddLabel('Solara | Testing Injector')
 CreditLeft:AddDivider()
 CreditLeft:AddLabel('Thanks to everyone who made this possible!',true)
-CreditRight:AddLabel("Thanks for Using DevX cheat!/n/nPlease don't abuse these script too mutch, thank!/nConsider joining ours Roblox Group and ours Discord.",true)
+CreditRight:AddLabel("Thanks for Using DevX cheat!\n\nPlease don't abuse these script too mutch, thank!\nConsider joining ours Roblox Group and ours Discord.",true)
 local but = CreditRight:AddButton({
 	Text = "Join Group",
 	Func = function()
@@ -444,3 +445,4 @@ ThemeManager:ApplyToTab(Tabs['UI Settings'])
 -- You can use the SaveManager:LoadAutoloadConfig() to load a config
 -- which has been marked to be one that auto loads!
 SaveManager:LoadAutoloadConfig()
+return
