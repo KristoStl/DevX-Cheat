@@ -1379,7 +1379,7 @@ script.Parent.Activated:Connect(function()
 			script.Parent.Parent.Text = ''
 		end)
 		if not sucess then
-			print(error)
+			warn("DX_ " .. error)
 			script.Parent.Parent.Text = "Error Sending!"
 			wait(2)
 			script.Parent.Parent.Text = ''
