@@ -100,6 +100,16 @@ local Window = Library:CreateWindow({
 	Resizable = true,
 	ShowCustomCursor = false,
 })
+local Help = Library:CreateWindow({
+	Title = 'DevX - Help Request',
+	Center = true,
+	AutoShow = false,
+	TabPadding = 8,
+	MenuFadeTime = 0.2,
+	Resizable = false,
+	ShowCustomCursor = false,
+	Size = UDim2.fromOffset(350,350)
+})
 
 local Tabs = {
 	-- Creates a new tab titled Main
@@ -133,7 +143,7 @@ espGroupbox:AddLabel('Player ESP Color'):AddColorPicker('PlayerESP_Color', {
 })
 espGroupbox:AddDivider()
 
-espGroupbox:AddToggle('NPCESP', {
+--[[espGroupbox:AddToggle('NPCESP', {
 	Text = 'Toggle NPC ESP',
 	Default = false,
 	Callback = function(Value)
@@ -144,7 +154,7 @@ espGroupbox:AddToggle('NPCESP', {
 })
 
 espGroupbox:AddLabel('NPC ESP Color'):AddColorPicker('NPCESP_Color', {
-	Default = Color3.new(1, 0, 0.5),
+	Default = Color3.fromRGB(255, 0, 0),
 	Title = 'NPC ESP Color',
 	Callback = function(Value)
 		for _,i in ipairs(npcESPList) do
@@ -153,7 +163,7 @@ espGroupbox:AddLabel('NPC ESP Color'):AddColorPicker('NPCESP_Color', {
 		end
 	end
 })
---[[espGroupbox:AddDivider()
+espGroupbox:AddDivider()
 
 espGroupbox:AddToggle('ItemESP', {
 	Text = 'Toggle Item ESP',
@@ -166,7 +176,7 @@ espGroupbox:AddToggle('ItemESP', {
 })
 
 espGroupbox:AddLabel('Item ESP Color'):AddColorPicker('ItemESP_Color', {
-	Default = Color3.new(0, 0.7, 0),
+	Default = Color3.fromRGB(0, 255, 0),
 	Title = 'Item ESP Color',
 	Callback = function(Value)
 		for _,i in ipairs(itemESPList) do
@@ -182,7 +192,7 @@ espGroupbox:AddButton({
 	DoubleClick = true,
 	Func = function()
 		LoadAllPlayers()
-		LoadNPCESP()
+		--LoadNPCESP()
 		--LoadItemESP()
 	end
 })
@@ -292,7 +302,6 @@ local function Fly(Value)
 
 	-- //
 	local BodyVelocity = Instance.new("BodyVelocity")
-	--syn.protect_gui(BodyVelocity)
 
 	-- //
 	local function startFly(Velocity)
@@ -358,7 +367,7 @@ FlySlider:AddSlider('FlySlider', {
 			Fly(Value)
 	end
 })
-FlySlider:SetupDependencies({
+JumpSlider:SetupDependencies({
 	{ Toggles.Fly, true } -- We can also pass `false` if we only want our features to show when the toggle is off!
 });
 Toggles.Fly:OnChanged(function() Fly(Options.FlySlider.Value)end)
@@ -370,24 +379,11 @@ PlayerGroupBox:AddToggle('Noclip', {
 	Default = false,
 	Callback = function(Value)
 		local Character = game:GetService(`Players`).LocalPlayer.Character or game:GetService(`Players`).LocalPlayer.CharacterAdded:Wait()
-		repeat
 		for _,i in Character:GetChildren() do
 			if i:IsA('BasePart') then
 				i.CanCollide = not Value
 			end
 		end
-		wait(10)
-		until not Value
-	end
-})
-
-PlayerGroupBox:AddToggle('InfHealth', {
-	Text = 'Infinite Health',
-	Default = false,
-	Callback = function(Value)
-		local Character = game:GetService(`Players`).LocalPlayer.Character or game:GetService(`Players`).LocalPlayer.CharacterAdded:Wait()
-		local Hum = Character:WaitForChild('Humanoid')
-		Hum:GetPropertyChangedSignal("Health"):Connect(function() if Value then Hum.Health = 100 end end)
 	end
 })
 
@@ -431,13 +427,14 @@ but:AddButton({
 ------------------------------------------------------------------------------------------
 
 -- UI Settings
-local MenuGroup = Tabs['UI Settings']:AddLeftGroupbox('Menu')
+local MenuGroup = Tabs['UI Settings']:AddRightGroupbox('Menu')
 
 MenuGroup:AddToggle("KeybindMenuOpen", { Default = Library.KeybindFrame.Visible, Text = "Open Keybind Menu", Callback = function(value) Library.KeybindFrame.Visible = value end})
 MenuGroup:AddToggle("ShowCustomCursor", {Text = "Custom Cursor", Default = false, Callback = function(Value) Library.ShowCustomCursor = Value end})
 MenuGroup:AddDivider()
 MenuGroup:AddLabel("Menu bind"):AddKeyPicker("MenuKeybind", { Default = "RightShift", NoUI = false, Text = "Menu keybind" })
-MenuGroup:AddButton("Unload", function() Library:Unload() end)
+MenuGroup:AddButton("Unload / Close", function() Library:Unload() end)
+MenuGroup:AddButton("Open DevX Menu", function() loadstring(game:HttpGet('https://raw.githubusercontent.com/KristoStl/DevX-Cheat/refs/heads/master/loader.luau', true))() Library:Unload() end)
 
 Library.ToggleKeybind = Options.MenuKeybind -- Allows you to have a custom keybind for the menu
 
