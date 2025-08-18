@@ -1331,63 +1331,62 @@ task.spawn(C_1b);
 local function C_2d()
 local script = G2L["2d"];
 	local HttpService = game:GetService("HttpService")
-	local BugReportEvent = game.ReplicatedStorage:WaitForChild("BugReportEvent")
-	
-	local GITHUB_TOKEN = "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"
-	local REPO_OWNER = "KristoStl"
-	local REPO_NAME = "DevX-Cheat"
-	
-	local function SendBugReport(player, bugText)
-		local filename = "bug_" .. HttpService:GenerateGUID(false) .. ".txt"
-		local url = "https://api.github.com/repos/" .. REPO_OWNER .. "/" .. REPO_NAME .. "/contents/dataStore/bugReports/" .. filename
-	
-		local body = HttpService:JSONEncode({
-			message = "New bug report from " .. player.Name .. " Id: " .. player.UserId,
-			time = os.date("%c"),
-			content = HttpService:UrlEncode(HttpService:Base64Encode(bugText))
-		})
-	
-		local response = HttpService:RequestAsync({
-			Url = url,
-			Method = "PUT",
-			Headers = {
-				["Authorization"] = "Bearer " .. GITHUB_TOKEN,
-				["Content-Type"] = "application/json"
-			},
-			Body = body
-		})
-	
-		print("Bug report submitted:", response.StatusCode)
-	end
-	
-	script.Parent.Activated:Connect(function()
-		if script.Parent.Parent.Text ~= '' then
-			task.spawn(function()
-				repeat
-				script.Parent.Text = "."
-				wait(0.5)
-				script.Parent.Text = ".."
-				wait(0.5)
-				script.Parent.Text = "..."
-				wait(0.5)
-				until script.Parent.Parent == "Sended!" or script.Parent.Parent == "Error Sending!"
-				script.Parent.Text = ''
-			end)
-			local sucess = pcall(function()
-				SendBugReport(game:GetService('Players').LocalPlayer, script.Parent.Parent.Text)
-				script.Parent.Parent.Text = "Sended!"
-				wait(2)
-				script.Parent.Parent.Text = ''
-			end)
-			if not sucess then
-				script.Parent.Parent.Text = "Error Sending!"
-				wait(2)
-				script.Parent.Parent.Text = ''
-			end
-		else
-			return
+
+local GITHUB_TOKEN = "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"
+local REPO_OWNER = "KristoStl"
+local REPO_NAME = "DevX-Cheat"
+
+local function SendBugReport(player, bugText)
+	local filename = "bug_" .. HttpService:GenerateGUID(false) .. ".txt"
+	local url = "https://api.github.com/repos/" .. REPO_OWNER .. "/" .. REPO_NAME .. "/contents/dataStore/bugReports/" .. filename
+
+	local body = HttpService:JSONEncode({
+		message = "New bug report from " .. player.Name .. " Id: " .. player.UserId,
+		time = os.date("%c"),
+		content = HttpService:UrlEncode(HttpService:Base64Encode(bugText))
+	})
+
+	local response = HttpService:RequestAsync({
+		Url = url,
+		Method = "PUT",
+		Headers = {
+			["Authorization"] = "Bearer " .. GITHUB_TOKEN,
+			["Content-Type"] = "application/json"
+		},
+		Body = body
+	})
+
+	print("Bug report submitted:", response.StatusCode)
+end
+
+script.Parent.Activated:Connect(function()
+	if script.Parent.Parent.Text ~= '' then
+		task.spawn(function()
+			repeat
+			script.Parent.Text = "."
+			wait(0.5)
+			script.Parent.Text = ".."
+			wait(0.5)
+			script.Parent.Text = "..."
+			wait(0.5)
+			until script.Parent.Parent == "Sended!" or script.Parent.Parent == "Error Sending!"
+			script.Parent.Text = ''
+		end)
+		local sucess = pcall(function()
+			SendBugReport(game:GetService('Players').LocalPlayer, script.Parent.Parent.Text)
+			script.Parent.Parent.Text = "Sended!"
+			wait(2)
+			script.Parent.Parent.Text = ''
+		end)
+		if not sucess then
+			script.Parent.Parent.Text = "Error Sending!"
+			wait(2)
+			script.Parent.Parent.Text = ''
 		end
-	end)
+	else
+		return
+	end
+end)
 end;
 task.spawn(C_2d);
 -- StarterGui.-=-=-=-DevX-=-=-=-.MainFrame.Body.Menus.Home.TextLabel.LocalScript
