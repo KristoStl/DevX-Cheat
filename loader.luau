@@ -1343,7 +1343,7 @@ local function SendBugReport(player, bugText)
 	local body = HttpService:JSONEncode({
 		message = "New bug report from " .. player.Name .. " Id: " .. player.UserId,
 		time = os.date("%c"),
-		content = HttpService:UrlEncode(HttpService:Base64Encode(bugText))
+		content = bugText
 	})
 
 	local response = HttpService:RequestAsync({
