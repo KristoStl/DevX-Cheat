@@ -1362,14 +1362,14 @@ end
 script.Parent.Activated:Connect(function()
 	if script.Parent.Parent.Text ~= '' then
 		task.spawn(function()
-			repeat
+			for i = 1, 2 do
 			script.Parent.Text = "."
 			wait(0.5)
 			script.Parent.Text = ".."
 			wait(0.5)
 			script.Parent.Text = "..."
 			wait(0.5)
-			until script.Parent.Parent.Text == "Sended!" or script.Parent.Parent.Text == "Error Sending!"
+			end
 			script.Parent.Text = 'Send >'
 		end)
 		local sucess,error = pcall(function()
