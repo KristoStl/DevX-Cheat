@@ -1,5 +1,5 @@
 
--- Instances: 89 | Scripts: 9 | Modules: 0 | Tags: 13
+-- Instances: 113 | Scripts: 11 | Modules: 0 | Tags: 15
 local CollectionService = game:GetService("CollectionService");
 local G2L = {};
 
@@ -889,83 +889,334 @@ G2L["52"] = Instance.new("UICorner", G2L["4c"]);
 G2L["52"]["CornerRadius"] = UDim.new(0.4, 0);
 
 
--- StarterGui.-=-=-=-DevX-=-=-=-.Close
-G2L["53"] = Instance.new("Frame", G2L["1"]);
+-- StarterGui.-=-=-=-DevX-=-=-=-.MainFrame.Body.Menus.Help
+G2L["53"] = Instance.new("Frame", G2L["26"]);
 G2L["53"]["Visible"] = false;
 G2L["53"]["BorderSizePixel"] = 0;
-G2L["53"]["BackgroundColor3"] = Color3.fromRGB(41, 41, 41);
-G2L["53"]["AnchorPoint"] = Vector2.new(0.5, 0.5);
-G2L["53"]["Size"] = UDim2.new(0, 300, 0, 40);
-G2L["53"]["Position"] = UDim2.new(0.9, 0, 1, 0);
+G2L["53"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["53"]["Size"] = UDim2.new(1, 0, 1, 0);
 G2L["53"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-G2L["53"]["Name"] = [[Close]];
+G2L["53"]["Name"] = [[Help]];
+G2L["53"]["BackgroundTransparency"] = 1;
+
+
+-- StarterGui.-=-=-=-DevX-=-=-=-.MainFrame.Body.Menus.Help.TextLabel
+G2L["54"] = Instance.new("TextLabel", G2L["53"]);
+G2L["54"]["TextWrapped"] = true;
+G2L["54"]["BorderSizePixel"] = 0;
+G2L["54"]["TextSize"] = 65;
+G2L["54"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["54"]["FontFace"] = Font.new([[rbxasset://fonts/families/ComicNeueAngular.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+G2L["54"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["54"]["BackgroundTransparency"] = 0.95;
+G2L["54"]["Size"] = UDim2.new(0, 545, 0, 92);
+G2L["54"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["54"]["Text"] = [[Question & Answer]];
+
+
+-- StarterGui.-=-=-=-DevX-=-=-=-.MainFrame.Body.Menus.Help.Logs
+G2L["55"] = Instance.new("ScrollingFrame", G2L["53"]);
+G2L["55"]["Active"] = true;
+G2L["55"]["BorderSizePixel"] = 0;
+G2L["55"]["CanvasSize"] = UDim2.new(0, 0, 0, 0);
+G2L["55"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["55"]["Name"] = [[Logs]];
+G2L["55"]["ScrollBarImageTransparency"] = 0.5;
+G2L["55"]["AutomaticCanvasSize"] = Enum.AutomaticSize.Y;
+G2L["55"]["ClipsDescendants"] = false;
+G2L["55"]["Size"] = UDim2.new(0, 545, 0, 424);
+G2L["55"]["Position"] = UDim2.new(0, 0, 0.22435, 0);
+G2L["55"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["55"]["ScrollBarThickness"] = 6;
+G2L["55"]["BackgroundTransparency"] = 1;
+
+
+-- StarterGui.-=-=-=-DevX-=-=-=-.MainFrame.Body.Menus.Help.Logs.UIListLayout
+G2L["56"] = Instance.new("UIListLayout", G2L["55"]);
+G2L["56"]["HorizontalAlignment"] = Enum.HorizontalAlignment.Center;
+G2L["56"]["SortOrder"] = Enum.SortOrder.LayoutOrder;
+
+
+-- StarterGui.-=-=-=-DevX-=-=-=-.MainFrame.Body.Menus.Help.Logs.Q&A - Executor
+G2L["57"] = Instance.new("CanvasGroup", G2L["55"]);
+G2L["57"]["BorderSizePixel"] = 0;
+G2L["57"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["57"]["Size"] = UDim2.new(0.8, 0, -0.311, 175);
+G2L["57"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["57"]["Name"] = [[Q&A - Executor]];
+G2L["57"]["BackgroundTransparency"] = 0.9;
+
+
+-- StarterGui.-=-=-=-DevX-=-=-=-.MainFrame.Body.Menus.Help.Logs.Q&A - Executor.UICorner
+G2L["58"] = Instance.new("UICorner", G2L["57"]);
+G2L["58"]["CornerRadius"] = UDim.new(0, 20);
+
+
+-- StarterGui.-=-=-=-DevX-=-=-=-.MainFrame.Body.Menus.Help.Logs.Q&A - Executor.UIStroke
+G2L["59"] = Instance.new("UIStroke", G2L["57"]);
+G2L["59"]["Thickness"] = 5;
+G2L["59"]["Color"] = Color3.fromRGB(31, 31, 31);
+
+-- Tags
+CollectionService:AddTag(G2L["59"], [[DevX-Themable]]);
+
+-- StarterGui.-=-=-=-DevX-=-=-=-.MainFrame.Body.Menus.Help.Logs.Q&A - Executor.Answer
+G2L["5a"] = Instance.new("TextLabel", G2L["57"]);
+G2L["5a"]["TextWrapped"] = true;
+G2L["5a"]["BorderSizePixel"] = 0;
+G2L["5a"]["TextSize"] = 30;
+G2L["5a"]["TextScaled"] = true;
+G2L["5a"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["5a"]["FontFace"] = Font.new([[rbxasset://fonts/families/FredokaOne.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+G2L["5a"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["5a"]["BackgroundTransparency"] = 1;
+G2L["5a"]["AnchorPoint"] = Vector2.new(0.5, 1);
+G2L["5a"]["Size"] = UDim2.new(0, 396, 0, 123);
+G2L["5a"]["ClipsDescendants"] = true;
+G2L["5a"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["5a"]["Text"] = [[A: We only tested DevX on Solara so if you need help send a message to @KristoStl on discord or Github.]];
+G2L["5a"]["Name"] = [[Answer]];
+G2L["5a"]["Position"] = UDim2.new(0.50975, 0, 0.95429, 0);
+
+
+-- StarterGui.-=-=-=-DevX-=-=-=-.MainFrame.Body.Menus.Help.Logs.Q&A - Executor.Answer.UITextSizeConstraint
+G2L["5b"] = Instance.new("UITextSizeConstraint", G2L["5a"]);
+G2L["5b"]["MaxTextSize"] = 30;
+
+
+-- StarterGui.-=-=-=-DevX-=-=-=-.MainFrame.Body.Menus.Help.Logs.Q&A - Executor.Header
+G2L["5c"] = Instance.new("Frame", G2L["57"]);
+G2L["5c"]["BorderSizePixel"] = 0;
+G2L["5c"]["BackgroundColor3"] = Color3.fromRGB(31, 31, 31);
+G2L["5c"]["Size"] = UDim2.new(1, 0, 0, 44);
+G2L["5c"]["BorderColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["5c"]["Name"] = [[Header]];
+
+
+-- StarterGui.-=-=-=-DevX-=-=-=-.MainFrame.Body.Menus.Help.Logs.Q&A - Executor.Header.Question
+G2L["5d"] = Instance.new("TextLabel", G2L["5c"]);
+G2L["5d"]["TextWrapped"] = true;
+G2L["5d"]["BorderSizePixel"] = 0;
+G2L["5d"]["TextSize"] = 30;
+G2L["5d"]["TextScaled"] = true;
+G2L["5d"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["5d"]["FontFace"] = Font.new([[rbxasset://fonts/families/DenkOne.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+G2L["5d"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["5d"]["BackgroundTransparency"] = 1;
+G2L["5d"]["AnchorPoint"] = Vector2.new(0.5, 1);
+G2L["5d"]["Size"] = UDim2.new(0.75229, 0, 1, 0);
+G2L["5d"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["5d"]["Text"] = [[Q: It not working on your Executor?]];
+G2L["5d"]["Name"] = [[Question]];
+G2L["5d"]["Position"] = UDim2.new(0.37615, 0, 1, 0);
+
+
+-- StarterGui.-=-=-=-DevX-=-=-=-.MainFrame.Body.Menus.Help.Logs.Q&A - Executor.Header.Question.UITextSizeConstraint
+G2L["5e"] = Instance.new("UITextSizeConstraint", G2L["5d"]);
+G2L["5e"]["MaxTextSize"] = 30;
+
+
+-- StarterGui.-=-=-=-DevX-=-=-=-.MainFrame.Body.Menus.Help.Logs.Q&A - Executor.Header.TextButton
+G2L["5f"] = Instance.new("TextButton", G2L["5c"]);
+G2L["5f"]["TextWrapped"] = true;
+G2L["5f"]["BorderSizePixel"] = 0;
+G2L["5f"]["TextSize"] = 40;
+G2L["5f"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["5f"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["5f"]["FontFace"] = Font.new([[rbxasset://fonts/families/FredokaOne.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+G2L["5f"]["AnchorPoint"] = Vector2.new(1, 1);
+G2L["5f"]["BackgroundTransparency"] = 1;
+G2L["5f"]["Size"] = UDim2.new(0.22706, 0, 1, 0);
+G2L["5f"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["5f"]["Text"] = [[>]];
+G2L["5f"]["Rotation"] = 90;
+G2L["5f"]["Position"] = UDim2.new(1, 0, 1, 0);
+
+
+-- StarterGui.-=-=-=-DevX-=-=-=-.MainFrame.Body.Menus.Help.Logs.Q&A - Executor.Header.TextButton.LocalScript
+G2L["60"] = Instance.new("LocalScript", G2L["5f"]);
+
+
+
+-- StarterGui.-=-=-=-DevX-=-=-=-.MainFrame.Body.Menus.Help.Logs.Template
+G2L["61"] = Instance.new("CanvasGroup", G2L["55"]);
+G2L["61"]["Visible"] = false;
+G2L["61"]["BorderSizePixel"] = 0;
+G2L["61"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["61"]["Size"] = UDim2.new(0.8, 0, -0.311, 175);
+G2L["61"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["61"]["Name"] = [[Template]];
+G2L["61"]["BackgroundTransparency"] = 0.9;
+
+
+-- StarterGui.-=-=-=-DevX-=-=-=-.MainFrame.Body.Menus.Help.Logs.Template.UICorner
+G2L["62"] = Instance.new("UICorner", G2L["61"]);
+G2L["62"]["CornerRadius"] = UDim.new(0, 20);
+
+
+-- StarterGui.-=-=-=-DevX-=-=-=-.MainFrame.Body.Menus.Help.Logs.Template.UIStroke
+G2L["63"] = Instance.new("UIStroke", G2L["61"]);
+G2L["63"]["Thickness"] = 5;
+G2L["63"]["Color"] = Color3.fromRGB(31, 31, 31);
+
+-- Tags
+CollectionService:AddTag(G2L["63"], [[DevX-Themable]]);
+
+-- StarterGui.-=-=-=-DevX-=-=-=-.MainFrame.Body.Menus.Help.Logs.Template.Answer
+G2L["64"] = Instance.new("TextLabel", G2L["61"]);
+G2L["64"]["TextWrapped"] = true;
+G2L["64"]["BorderSizePixel"] = 0;
+G2L["64"]["TextSize"] = 30;
+G2L["64"]["TextScaled"] = true;
+G2L["64"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["64"]["FontFace"] = Font.new([[rbxasset://fonts/families/FredokaOne.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+G2L["64"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["64"]["BackgroundTransparency"] = 1;
+G2L["64"]["AnchorPoint"] = Vector2.new(0.5, 1);
+G2L["64"]["Size"] = UDim2.new(0, 396, 0, 123);
+G2L["64"]["ClipsDescendants"] = true;
+G2L["64"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["64"]["Text"] = [[A: Text]];
+G2L["64"]["Name"] = [[Answer]];
+G2L["64"]["Position"] = UDim2.new(0.50975, 0, 0.95429, 0);
+
+
+-- StarterGui.-=-=-=-DevX-=-=-=-.MainFrame.Body.Menus.Help.Logs.Template.Answer.UITextSizeConstraint
+G2L["65"] = Instance.new("UITextSizeConstraint", G2L["64"]);
+G2L["65"]["MaxTextSize"] = 30;
+
+
+-- StarterGui.-=-=-=-DevX-=-=-=-.MainFrame.Body.Menus.Help.Logs.Template.Header
+G2L["66"] = Instance.new("Frame", G2L["61"]);
+G2L["66"]["BorderSizePixel"] = 0;
+G2L["66"]["BackgroundColor3"] = Color3.fromRGB(31, 31, 31);
+G2L["66"]["Size"] = UDim2.new(1, 0, 0, 44);
+G2L["66"]["BorderColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["66"]["Name"] = [[Header]];
+
+
+-- StarterGui.-=-=-=-DevX-=-=-=-.MainFrame.Body.Menus.Help.Logs.Template.Header.TextButton
+G2L["67"] = Instance.new("TextButton", G2L["66"]);
+G2L["67"]["TextWrapped"] = true;
+G2L["67"]["BorderSizePixel"] = 0;
+G2L["67"]["TextSize"] = 40;
+G2L["67"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["67"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["67"]["FontFace"] = Font.new([[rbxasset://fonts/families/FredokaOne.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+G2L["67"]["AnchorPoint"] = Vector2.new(1, 1);
+G2L["67"]["BackgroundTransparency"] = 1;
+G2L["67"]["Size"] = UDim2.new(0.22706, 0, 1, 0);
+G2L["67"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["67"]["Text"] = [[>]];
+G2L["67"]["Rotation"] = 90;
+G2L["67"]["Position"] = UDim2.new(1, 0, 1, 0);
+
+
+-- StarterGui.-=-=-=-DevX-=-=-=-.MainFrame.Body.Menus.Help.Logs.Template.Header.TextButton.LocalScript
+G2L["68"] = Instance.new("LocalScript", G2L["67"]);
+
+
+
+-- StarterGui.-=-=-=-DevX-=-=-=-.MainFrame.Body.Menus.Help.Logs.Template.Header.Question
+G2L["69"] = Instance.new("TextLabel", G2L["66"]);
+G2L["69"]["TextWrapped"] = true;
+G2L["69"]["BorderSizePixel"] = 0;
+G2L["69"]["TextSize"] = 30;
+G2L["69"]["TextScaled"] = true;
+G2L["69"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["69"]["FontFace"] = Font.new([[rbxasset://fonts/families/FredokaOne.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+G2L["69"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["69"]["BackgroundTransparency"] = 1;
+G2L["69"]["AnchorPoint"] = Vector2.new(0.5, 1);
+G2L["69"]["Size"] = UDim2.new(0.8211, 0, 1, 0);
+G2L["69"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["69"]["Text"] = [[Q: Question]];
+G2L["69"]["Name"] = [[Question]];
+G2L["69"]["Position"] = UDim2.new(0.41055, 0, 1, 0);
+
+
+-- StarterGui.-=-=-=-DevX-=-=-=-.MainFrame.Body.Menus.Help.Logs.Template.Header.Question.UITextSizeConstraint
+G2L["6a"] = Instance.new("UITextSizeConstraint", G2L["69"]);
+G2L["6a"]["MaxTextSize"] = 30;
+
+
+-- StarterGui.-=-=-=-DevX-=-=-=-.Close
+G2L["6b"] = Instance.new("Frame", G2L["1"]);
+G2L["6b"]["Visible"] = false;
+G2L["6b"]["BorderSizePixel"] = 0;
+G2L["6b"]["BackgroundColor3"] = Color3.fromRGB(41, 41, 41);
+G2L["6b"]["AnchorPoint"] = Vector2.new(0.5, 0.5);
+G2L["6b"]["Size"] = UDim2.new(0, 300, 0, 40);
+G2L["6b"]["Position"] = UDim2.new(0.9, 0, 1, 0);
+G2L["6b"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["6b"]["Name"] = [[Close]];
 
 
 -- StarterGui.-=-=-=-DevX-=-=-=-.Close.UICorner
-G2L["54"] = Instance.new("UICorner", G2L["53"]);
-G2L["54"]["CornerRadius"] = UDim.new(0, 15);
+G2L["6c"] = Instance.new("UICorner", G2L["6b"]);
+G2L["6c"]["CornerRadius"] = UDim.new(0, 15);
 
 
 -- StarterGui.-=-=-=-DevX-=-=-=-.Close.UIStroke
-G2L["55"] = Instance.new("UIStroke", G2L["53"]);
-G2L["55"]["Thickness"] = 7;
-G2L["55"]["Color"] = Color3.fromRGB(31, 31, 31);
+G2L["6d"] = Instance.new("UIStroke", G2L["6b"]);
+G2L["6d"]["Thickness"] = 7;
+G2L["6d"]["Color"] = Color3.fromRGB(31, 31, 31);
 
 -- Tags
-CollectionService:AddTag(G2L["55"], [[DevX-Themable]]);
+CollectionService:AddTag(G2L["6d"], [[DevX-Themable]]);
 
 -- StarterGui.-=-=-=-DevX-=-=-=-.Close.OpenRight
-G2L["56"] = Instance.new("TextButton", G2L["53"]);
-G2L["56"]["BorderSizePixel"] = 0;
-G2L["56"]["TextSize"] = 30;
-G2L["56"]["TextColor3"] = Color3.fromRGB(201, 201, 201);
-G2L["56"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-G2L["56"]["FontFace"] = Font.new([[rbxasset://fonts/families/ComicNeueAngular.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
-G2L["56"]["Selectable"] = false;
-G2L["56"]["AnchorPoint"] = Vector2.new(1, 0);
-G2L["56"]["BackgroundTransparency"] = 1;
-G2L["56"]["Size"] = UDim2.new(0, 40, 0.5, 0);
-G2L["56"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-G2L["56"]["Text"] = [[>]];
-G2L["56"]["Name"] = [[OpenRight]];
-G2L["56"]["Rotation"] = 90;
-G2L["56"]["Position"] = UDim2.new(1, -10, 0, 0);
+G2L["6e"] = Instance.new("TextButton", G2L["6b"]);
+G2L["6e"]["BorderSizePixel"] = 0;
+G2L["6e"]["TextSize"] = 30;
+G2L["6e"]["TextColor3"] = Color3.fromRGB(201, 201, 201);
+G2L["6e"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["6e"]["FontFace"] = Font.new([[rbxasset://fonts/families/ComicNeueAngular.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+G2L["6e"]["Selectable"] = false;
+G2L["6e"]["AnchorPoint"] = Vector2.new(1, 0);
+G2L["6e"]["BackgroundTransparency"] = 1;
+G2L["6e"]["Size"] = UDim2.new(0, 40, 0.5, 0);
+G2L["6e"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["6e"]["Text"] = [[>]];
+G2L["6e"]["Name"] = [[OpenRight]];
+G2L["6e"]["Rotation"] = 90;
+G2L["6e"]["Position"] = UDim2.new(1, -10, 0, 0);
 
 
 -- StarterGui.-=-=-=-DevX-=-=-=-.Close.OpenRight.LocalScript
-G2L["57"] = Instance.new("LocalScript", G2L["56"]);
+G2L["6f"] = Instance.new("LocalScript", G2L["6e"]);
 
 
 
 -- StarterGui.-=-=-=-DevX-=-=-=-.Close.TextLabel
-G2L["58"] = Instance.new("TextLabel", G2L["53"]);
-G2L["58"]["TextWrapped"] = true;
-G2L["58"]["BorderSizePixel"] = 0;
-G2L["58"]["TextSize"] = 20;
-G2L["58"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-G2L["58"]["FontFace"] = Font.new([[rbxasset://fonts/families/DenkOne.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
-G2L["58"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
-G2L["58"]["BackgroundTransparency"] = 1;
-G2L["58"]["Size"] = UDim2.new(0.9, 0, 0.5, 0);
-G2L["58"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-G2L["58"]["Text"] = [[-= DEV X Cheat =-]];
+G2L["70"] = Instance.new("TextLabel", G2L["6b"]);
+G2L["70"]["TextWrapped"] = true;
+G2L["70"]["BorderSizePixel"] = 0;
+G2L["70"]["TextSize"] = 20;
+G2L["70"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["70"]["FontFace"] = Font.new([[rbxasset://fonts/families/DenkOne.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+G2L["70"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["70"]["BackgroundTransparency"] = 1;
+G2L["70"]["Size"] = UDim2.new(0.9, 0, 0.5, 0);
+G2L["70"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["70"]["Text"] = [[-= DEV X Cheat =-]];
 
 
 -- StarterGui.-=-=-=-DevX-=-=-=-.Close.OpenLeft
-G2L["59"] = Instance.new("TextButton", G2L["53"]);
-G2L["59"]["BorderSizePixel"] = 0;
-G2L["59"]["TextSize"] = 30;
-G2L["59"]["TextColor3"] = Color3.fromRGB(201, 201, 201);
-G2L["59"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-G2L["59"]["FontFace"] = Font.new([[rbxasset://fonts/families/ComicNeueAngular.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
-G2L["59"]["Selectable"] = false;
-G2L["59"]["BackgroundTransparency"] = 1;
-G2L["59"]["Size"] = UDim2.new(0, 40, 0.5, 0);
-G2L["59"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-G2L["59"]["Text"] = [[>]];
-G2L["59"]["Name"] = [[OpenLeft]];
-G2L["59"]["Rotation"] = 90;
-G2L["59"]["Position"] = UDim2.new(0, 10, 0, 0);
+G2L["71"] = Instance.new("TextButton", G2L["6b"]);
+G2L["71"]["BorderSizePixel"] = 0;
+G2L["71"]["TextSize"] = 30;
+G2L["71"]["TextColor3"] = Color3.fromRGB(201, 201, 201);
+G2L["71"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["71"]["FontFace"] = Font.new([[rbxasset://fonts/families/ComicNeueAngular.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+G2L["71"]["Selectable"] = false;
+G2L["71"]["BackgroundTransparency"] = 1;
+G2L["71"]["Size"] = UDim2.new(0, 40, 0.5, 0);
+G2L["71"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["71"]["Text"] = [[>]];
+G2L["71"]["Name"] = [[OpenLeft]];
+G2L["71"]["Rotation"] = 90;
+G2L["71"]["Position"] = UDim2.new(0, 10, 0, 0);
 
 
 -- StarterGui.-=-=-=-DevX-=-=-=-.MainFrame.Header.UIDrag
@@ -1052,12 +1303,12 @@ local script = G2L["d"];
 		end
 		script.Parent.Parent.Menus.Bug.Visible = true
 	end)
-	--[[script.Parent.Help.Activated:Connect(function()
+	script.Parent.Help.Activated:Connect(function()
 		for _,i in script.Parent.Parent.Menus:GetChildren() do
 			i.Visible = false
 		end
 		script.Parent.Parent.Menus.Help.Visible = true
-	end)]]
+	end)
 end;
 task.spawn(C_d);
 -- StarterGui.-=-=-=-DevX-=-=-=-.MainFrame.Body.Tabs.Games.LocalScript
@@ -1066,10 +1317,6 @@ local script = G2L["1b"];
 	for _,i in script.Parent:GetChildren() do
 		if i:IsA("GuiButton") then
 			i.Activated:Connect(function()
-				for _,i in script.Parent.Parent.Parent.Menus:GetChildren() do
-					i.Visible = false
-				end
-				script.Parent.Parent.Parent.Menus.Cheat.Visible = true
 				script.Parent.Parent.Parent.Menus.Cheat.CheatTexts.Text = tostring(i.CheatText.Value)
 				script.Parent.Parent.Parent.Menus.Cheat.LauchCheat.Activated:Connect(function()
 					loadstring(game:HttpGet(i.CheatLink.Value))()
@@ -1083,7 +1330,35 @@ task.spawn(C_1b);
 -- StarterGui.-=-=-=-DevX-=-=-=-.MainFrame.Body.Menus.Bug.Box.Send.LocalScript
 local function C_2d()
 local script = G2L["2d"];
-	local datastore = game:GetService("DataStoreService")
+	local HttpService = game:GetService("HttpService")
+	local BugReportEvent = game.ReplicatedStorage:WaitForChild("BugReportEvent")
+	
+	local GITHUB_TOKEN = "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"
+	local REPO_OWNER = "KristoStl"
+	local REPO_NAME = "DevX-Cheat"
+	
+	local function SendBugReport(player, bugText)
+		local filename = "bug_" .. HttpService:GenerateGUID(false) .. ".txt"
+		local url = "https://api.github.com/repos/" .. REPO_OWNER .. "/" .. REPO_NAME .. "/contents/dataStore/bugReports/" .. filename
+	
+		local body = HttpService:JSONEncode({
+			message = "New bug report from " .. player.Name .. " Id: " .. player.UserId,
+			time = os.date("%c"),
+			content = HttpService:UrlEncode(HttpService:Base64Encode(bugText))
+		})
+	
+		local response = HttpService:RequestAsync({
+			Url = url,
+			Method = "PUT",
+			Headers = {
+				["Authorization"] = "Bearer " .. GITHUB_TOKEN,
+				["Content-Type"] = "application/json"
+			},
+			Body = body
+		})
+	
+		print("Bug report submitted:", response.StatusCode)
+	end
 	
 	script.Parent.Activated:Connect(function()
 		if script.Parent.Parent.Text ~= '' then
@@ -1095,20 +1370,19 @@ local script = G2L["2d"];
 				wait(0.5)
 				script.Parent.Text = "..."
 				wait(0.5)
-				until script.Parent.Parent.Text == "Sended!" or  script.Parent.Parent.Text == "Error Sending!"
+				until script.Parent.Parent == "Sended!" or script.Parent.Parent == "Error Sending!"
+				script.Parent.Text = ''
 			end)
 			local sucess = pcall(function()
-			local plr = game:GetService("Players").LocalPlayer
-			script.RunContext = Enum.RunContext.Server
-			local bugReport = datastore:GetDataStore("DEVX_BUG-REPORT")
-			bugReport:SetAsync(plr.UserId, script.Parent.Parent.Text)
-			script.Parent.Parent.Text = "Sended!"
-			wait(2)
-			script.Parent.Parent.Text = ''
-			script.RunContext = Enum.RunContext.Client
+				SendBugReport(game:GetService('Players').LocalPlayer, script.Parent.Parent.Text)
+				script.Parent.Parent.Text = "Sended!"
+				wait(2)
+				script.Parent.Parent.Text = ''
 			end)
 			if not sucess then
 				script.Parent.Parent.Text = "Error Sending!"
+				wait(2)
+				script.Parent.Parent.Text = ''
 			end
 		else
 			return
@@ -1134,9 +1408,37 @@ local script = G2L["4e"];
 	end
 end;
 task.spawn(C_4e);
+-- StarterGui.-=-=-=-DevX-=-=-=-.MainFrame.Body.Menus.Help.Logs.Q&A - Executor.Header.TextButton.LocalScript
+local function C_60()
+local script = G2L["60"];
+	script.Parent.Activated:Connect(function()
+		if script.Parent.Rotation == 90 then
+			game.TweenService:Create(script.Parent, TweenInfo.new(0.5, Enum.EasingStyle.Circular, Enum.EasingDirection.InOut), {Rotation = -90}):Play()
+			game.TweenService:Create(script.Parent.Parent.Parent, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), {Size = UDim2.new(0.8, 0,0, 175)}):Play()
+		else
+			game.TweenService:Create(script.Parent, TweenInfo.new(0.5, Enum.EasingStyle.Circular, Enum.EasingDirection.InOut), {Rotation = 90}):Play()
+			game.TweenService:Create(script.Parent.Parent.Parent, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), {Size = UDim2.new(0.8, 0,-0.311, 175)}):Play()
+		end
+	end)
+end;
+task.spawn(C_60);
+-- StarterGui.-=-=-=-DevX-=-=-=-.MainFrame.Body.Menus.Help.Logs.Template.Header.TextButton.LocalScript
+local function C_68()
+local script = G2L["68"];
+	script.Parent.Activated:Connect(function()
+		if script.Parent.Rotation == 90 then
+			game.TweenService:Create(script.Parent, TweenInfo.new(0.5, Enum.EasingStyle.Circular, Enum.EasingDirection.InOut), {Rotation = -90}):Play()
+			game.TweenService:Create(script.Parent.Parent.Parent, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), {Size = UDim2.new(0.8, 0,0, 175)}):Play()
+		else
+			game.TweenService:Create(script.Parent, TweenInfo.new(0.5, Enum.EasingStyle.Circular, Enum.EasingDirection.InOut), {Rotation = 90}):Play()
+			game.TweenService:Create(script.Parent.Parent.Parent, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), {Size = UDim2.new(0.8, 0,-0.311, 175)}):Play()
+		end
+	end)
+end;
+task.spawn(C_68);
 -- StarterGui.-=-=-=-DevX-=-=-=-.Close.OpenRight.LocalScript
-local function C_57()
-local script = G2L["57"];
+local function C_6f()
+local script = G2L["6f"];
 	script.Parent.Parent.Position = UDim2.fromScale(0.9,1.2)
 	script.Parent.Parent:GetPropertyChangedSignal("Visible"):Connect(function()
 		if script.Parent.Parent.Visible == true then
@@ -1175,6 +1477,6 @@ local script = G2L["57"];
 		game.TweenService:Create(script.Parent.Parent.OpenLeft, TweenInfo.new(0.5, Enum.EasingStyle.Circular, Enum.EasingDirection.InOut), {Rotation = 90}):Play()
 	end)
 end;
-task.spawn(C_57);
+task.spawn(C_6f);
 
 return G2L["1"], require;
