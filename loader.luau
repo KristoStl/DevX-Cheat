@@ -1332,31 +1332,44 @@ local function C_2d()
 local script = G2L["2d"];
 local HttpService = game:GetService("HttpService")
 
-local GITHUB_TOKEN = "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"
-local REPO_OWNER = "KristoStl"
-local REPO_NAME = "DevX-Cheat"
+local DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1407103300934963240/Hgmhyy542YlD2JW073nwQvv42sA-Vt_BaguEwmk8IzlsWQ7u90I7pH3gKE_2Z0FTf1-e"
 
 local function SendBugReport(player, bugText)
-	local filename = "bug_" .. HttpService:GenerateGUID(false) .. ".txt"
-	local url = "https://api.github.com/repos/" .. REPO_OWNER .. "/" .. REPO_NAME .. "/contents/dataStore/bugReports/" .. filename
+	local embed = {
+		title = "🐞 Bug Report",
+		description = bugText,
+		color = 16711680, -- Red
+		fields = {
+			{
+				name = "Player",
+				value = player.Name .. " (" .. player.UserId .. ")",
+				inline = true
+			},
+			{
+				name = "Time",
+				value = os.date("%c"),
+				inline = true
+			}
+		},
+		footer = {
+			text = "DevX Cheat Reporter"
+	 }
+	}
 
-	local body = HttpService:JSONEncode({
-		message = "New bug report from " .. player.Name .. " Id: " .. player.UserId,
-		time = os.date("%c"),
-		content = bugText
-	})
+	local payload = {
+		embeds = {embed}
+	}
 
-	local response = HttpService:RequestAsync({
-		Url = url,
-		Method = "PUT",
+	local response = http_request({
+		Url = DISCORD_WEBHOOK_URL,
+		Method = "POST",
 		Headers = {
-			["Authorization"] = "Bearer " .. GITHUB_TOKEN,
 			["Content-Type"] = "application/json"
 		},
-		Body = body
+		Body = HttpService:JSONEncode(payload)
 	})
 
-	print("Bug report submitted:", response.StatusCode)
+	print("Bug report submitted. Status:", response.StatusCode)
 end
 
 script.Parent.Activated:Connect(function()
