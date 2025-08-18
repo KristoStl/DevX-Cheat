@@ -1330,7 +1330,7 @@ task.spawn(C_1b);
 -- StarterGui.-=-=-=-DevX-=-=-=-.MainFrame.Body.Menus.Bug.Box.Send.LocalScript
 local function C_2d()
 local script = G2L["2d"];
-	local HttpService = game:GetService("HttpService")
+local HttpService = game:GetService("HttpService")
 
 local GITHUB_TOKEN = "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"
 local REPO_OWNER = "KristoStl"
@@ -1369,16 +1369,17 @@ script.Parent.Activated:Connect(function()
 			wait(0.5)
 			script.Parent.Text = "..."
 			wait(0.5)
-			until script.Parent.Parent == "Sended!" or script.Parent.Parent == "Error Sending!"
-			script.Parent.Text = ''
+			until script.Parent.Parent.Text == "Sended!" or script.Parent.Parent.Text == "Error Sending!"
+			script.Parent.Text = 'Send >'
 		end)
-		local sucess = pcall(function()
+		local sucess,error = pcall(function()
 			SendBugReport(game:GetService('Players').LocalPlayer, script.Parent.Parent.Text)
 			script.Parent.Parent.Text = "Sended!"
 			wait(2)
 			script.Parent.Parent.Text = ''
 		end)
 		if not sucess then
+			print(error)
 			script.Parent.Parent.Text = "Error Sending!"
 			wait(2)
 			script.Parent.Parent.Text = ''
