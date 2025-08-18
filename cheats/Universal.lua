@@ -143,7 +143,7 @@ espGroupbox:AddLabel('Player ESP Color'):AddColorPicker('PlayerESP_Color', {
 })
 espGroupbox:AddDivider()
 
---[[espGroupbox:AddToggle('NPCESP', {
+espGroupbox:AddToggle('NPCESP', {
 	Text = 'Toggle NPC ESP',
 	Default = false,
 	Callback = function(Value)
@@ -163,7 +163,7 @@ espGroupbox:AddLabel('NPC ESP Color'):AddColorPicker('NPCESP_Color', {
 		end
 	end
 })
-espGroupbox:AddDivider()
+--[[espGroupbox:AddDivider()
 
 espGroupbox:AddToggle('ItemESP', {
 	Text = 'Toggle Item ESP',
@@ -367,7 +367,7 @@ FlySlider:AddSlider('FlySlider', {
 			Fly(Value)
 	end
 })
-JumpSlider:SetupDependencies({
+FlySlider:SetupDependencies({
 	{ Toggles.Fly, true } -- We can also pass `false` if we only want our features to show when the toggle is off!
 });
 Toggles.Fly:OnChanged(function() Fly(Options.FlySlider.Value)end)
@@ -413,13 +413,19 @@ local but = CreditRight:AddButton({
 	Func = function()
 		pcall(setclipboard, "https://www.roblox.com/share/g/693599338")
 		Library:Notify('Copied Link!', 5)
+		but.Text = "Copied!"
+		wait(0.5)
+		but.Text = "Join Group"
 	end
 })
-but:AddButton({
+local butt = but:AddButton({
 	Text = "Join Discord",
 	Func = function()
 		pcall(setclipboard, "https://discord.gg/JxM9kuCp3F")
 		Library:Notify('Copied Discord Invite!', 5)
+		butt.Text = "Copied!"
+		wait(0.5)
+		butt.Text = "Join Discord"
 	end
 })
 
@@ -427,7 +433,7 @@ but:AddButton({
 ------------------------------------------------------------------------------------------
 
 -- UI Settings
-local MenuGroup = Tabs['UI Settings']:AddRightGroupbox('Menu')
+local MenuGroup = Tabs['UI Settings']:AddLeftGroupbox('Menu')
 
 MenuGroup:AddToggle("KeybindMenuOpen", { Default = Library.KeybindFrame.Visible, Text = "Open Keybind Menu", Callback = function(value) Library.KeybindFrame.Visible = value end})
 MenuGroup:AddToggle("ShowCustomCursor", {Text = "Custom Cursor", Default = false, Callback = function(Value) Library.ShowCustomCursor = Value end})
