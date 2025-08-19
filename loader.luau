@@ -1471,6 +1471,7 @@ local script = G2L["2d"];
 	local HttpService = game:GetService("HttpService")
 	
 	local DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1407103300934963240/Hgmhyy542YlD2JW073nwQvv42sA-Vt_BaguEwmk8IzlsWQ7u90I7pH3gKE_2Z0FTf1-e"
+	local image = HttpService:JSONDecode("https://thumbnails.roproxy.com/v1/users/avatar-bust?userIds=".. player.UserId .."&size=150x150&format=Png&isCircular=false")["imageUrl"]
 	
 	local function SendBugReport(player, bugText)
 		if script.Parent.Parent.Title.Text == ''then
@@ -1499,7 +1500,7 @@ local script = G2L["2d"];
 		local payload = {
 			content = "\u{200B}",
 			username = player.DisplayName .. " - Bug Report",
-			avatar_url = tostring(HttpService:JSONDecode("https://thumbnails.roproxy.com/v1/users/avatar-bust?userIds=".. player.UserId .."&size=150x150&format=Png&isCircular=false")["imageUrl"]),
+			avatar_url = tostring(image),
 			embeds = {embed}
 		}
 
