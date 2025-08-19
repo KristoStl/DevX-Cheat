@@ -1498,7 +1498,7 @@ local script = G2L["2d"];
 		}
 		local payload = {
 			embeds = {embed},
-			avatar_url = HttpService:JSONDecode("https://thumbnails.roproxy.com/v1/users/avatar-headshot?userIds="..player.UserId.."&size=720x720&format=Png&isCircular=false")["data"]["imageUrl"],
+			avatar_url = "https://thumbnails.roproxy.com/v1/users/avatar-headshot?userIds="..player.UserId.."&size=150x150&format=Png&isCircular=false",
 			username = player.DisplayName .. " - Bug Report"
 		}
 	
