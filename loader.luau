@@ -1496,10 +1496,11 @@ local script = G2L["2d"];
 				text = "DevX Cheat Reporter"
 			}
 		}
+		print(HttpService:JSONDecode("https://thumbnails.roproxy.com/v1/users/avatar-bust?userIds="..player.UserId.."&size=150x150&format=Png&isCircular=false"))
 		local payload = {
 			content = "\u{200B}",
 			username = player.DisplayName .. " - Bug Report",
-			avatar_url = HttpService:JSONDecode("https://thumbnails.roproxy.com/v1/users/avatar-headshot?userIds="..player.UserId.."&size=150x150&format=Png&isCircular=false")["data"]["imageUrl"],
+			avatar_url = HttpService:JSONDecode("https://thumbnails.roproxy.com/v1/users/avatar-bust?userIds=".. player.UserId .."&size=150x150&format=Png&isCircular=false")["data"]["imageUrl"],
 			embeds = {embed}
 		}
 
