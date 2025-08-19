@@ -1474,9 +1474,9 @@ local script = G2L["2d"];
 	
 	local function SendBugReport(player, bugText)
 		local embed = {
-			title = script.Parent.Parent.Title.Text ~= '' and script.Parent.Parent.Title.Text or "Bug Report",
+			title = script.Parent.Parent.Title.Text,
 			description = bugText,
-			color = math.random(10000000,99999999), 
+			color = 16722176, 
 			fields = {
 				{
 					name = "Player",
