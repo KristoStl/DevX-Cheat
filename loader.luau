@@ -1473,6 +1473,9 @@ local script = G2L["2d"];
 	local DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1407103300934963240/Hgmhyy542YlD2JW073nwQvv42sA-Vt_BaguEwmk8IzlsWQ7u90I7pH3gKE_2Z0FTf1-e"
 	
 	local function SendBugReport(player, bugText)
+		if script.Parent.Parent.Title.Text ~= ''then
+			script.Parent.Parent.Title.Text = "- Bug Report -"
+		end
 		local embed = {
 			title = script.Parent.Parent.Title.Text,
 			description = bugText,
@@ -1493,9 +1496,11 @@ local script = G2L["2d"];
 				text = "DevX Cheat Reporter"
 			}
 		}
-	
+		local img = HttpService:JSONDecode("https://thumbnails.roproxy.com/v1/users/avatar-headshot?userIds="..player.UserId.."&size=720x720&format=Png&isCircular=false")
 		local payload = {
-			embeds = {embed}
+			embeds = {embed},
+			avatar_url = img["imageUrl"],
+			username = player.DisplayName .. " - Bug Report"
 		}
 	
 		local response = http_request({
