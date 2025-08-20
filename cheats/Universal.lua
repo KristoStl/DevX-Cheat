@@ -100,7 +100,7 @@ local Window = Library:CreateWindow({
 	Resizable = true,
 	ShowCustomCursor = false,
 })
-local Help = Library:CreateWindow({
+--[[local Help = Library:CreateWindow({
 	Title = 'DevX - Help Request',
 	Center = true,
 	AutoShow = false,
@@ -109,7 +109,7 @@ local Help = Library:CreateWindow({
 	Resizable = false,
 	ShowCustomCursor = false,
 	Size = UDim2.fromOffset(350,350)
-})
+})]]
 
 local Tabs = {
 	-- Creates a new tab titled Main
@@ -192,7 +192,7 @@ espGroupbox:AddButton({
 	DoubleClick = true,
 	Func = function()
 		LoadAllPlayers()
-		--LoadNPCESP()
+		LoadNPCESP()
 		--LoadItemESP()
 	end
 })
@@ -464,7 +464,7 @@ SaveManager:SetIgnoreIndexes({ 'MenuKeybind' })
 -- a script hub could have themes in a global folder
 -- and game configs in a separate folder per game
 ThemeManager:SetFolder('DevX')
-SaveManager:SetFolder('DevX/specific-game')
+SaveManager:SetFolder('DevX/Universal')
 
 -- Builds our config menu on the right side of our tab
 SaveManager:BuildConfigSection(Tabs['UI Settings'])
@@ -476,4 +476,4 @@ ThemeManager:ApplyToTab(Tabs['UI Settings'])
 -- You can use the SaveManager:LoadAutoloadConfig() to load a config
 -- which has been marked to be one that auto loads!
 SaveManager:LoadAutoloadConfig()
-return Window
+return script
