@@ -1473,7 +1473,10 @@ local script = G2L["2d"];
 	local DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1407103300934963240/Hgmhyy542YlD2JW073nwQvv42sA-Vt_BaguEwmk8IzlsWQ7u90I7pH3gKE_2Z0FTf1-e"
 	
 	local function SendBugReport(player, bugText)
-		local image = HttpService:JSONDecode(HttpService:GetAsync("https://thumbnails.roproxy.com/v1/users/avatar-bust?userIds=".. player.UserId .."&size=150x150&format=Png&isCircular=false"))["imageUrl"]
+		local response = HttpService:GetAsync("https://thumbnails.roproxy.com/v1/users/avatar-bust?userIds=".. player.UserId .."&size=150x150&format=Png&isCircular=false")
+		local decoded = HttpService:JSONDecode(response)
+
+		local image = (decoded.data and decoded.data[1] and decoded.data[1].imageUrl) or "https://media.istockphoto.com/id/1087531642/vector/male-face-silhouette-or-icon-man-avatar-profile-unknown-or-anonymous-person-vector.jpg?s=612x612&w=0&k=20&c=FEppaMMfyIYV2HJ6Ty8tLmPL1GX6Tz9u9Y8SCRrkD-o="
 		if script.Parent.Parent.Title.Text == ''then
 			script.Parent.Parent.Title.Text = "- Bug Report -"
 		end
