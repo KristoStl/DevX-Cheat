@@ -413,19 +413,20 @@ local but = CreditRight:AddButton({
 	Func = function()
 		pcall(setclipboard, "https://www.roblox.com/share/g/693599338")
 		Library:Notify('Copied Link!', 5)
-		but.Text = "Copied!"
-		wait(0.5)
-		but.Text = "Join Group"
 	end
 })
-local butt = but:AddButton({
+but:AddButton({
 	Text = "Join Discord",
 	Func = function()
-		pcall(setclipboard, "https://discord.gg/JxM9kuCp3F")
+		pcall(setclipboard, "https://discord.gg/JxM9kuCp3F")https://devx.gamer.gd/
 		Library:Notify('Copied Discord Invite!', 5)
-		butt.Text = "Copied!"
-		wait(0.5)
-		butt.Text = "Join Discord"
+	end
+})
+CreditRight:AddButton({
+	Text = "Our Official Website",
+	Func = function()
+		pcall(setclipboard, "https://devx.gamer.gd")
+		Library:Notify('Copied Invite!', 5)
 	end
 })
 
